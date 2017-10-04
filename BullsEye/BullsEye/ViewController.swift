@@ -19,8 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        currentValue = lroundf(slider.value)
-        targetValue = 1 + Int(arc4random_uniform(100))
+        startNewRound()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,11 +43,19 @@ class ViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
         
+        startNewRound()
+        
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
         currentValue = lroundf(slider.value)
 //      print("The value of the slider is now: \(slider.value)")
+    }
+    
+    func startNewRound() {
+        targetValue = 1 + Int(arc4random_uniform(100))
+        currentValue = 50
+        slider.value = Float(currentValue)
     }
 }
 
