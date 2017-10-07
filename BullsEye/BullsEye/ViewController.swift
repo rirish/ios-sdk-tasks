@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        startNewRound()
+        startNewGame()
         updateLabels()
     }
 
@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func showAlert() {
         
         let difference = abs(targetValue - currentValue)
@@ -78,6 +79,12 @@ class ViewController: UIViewController {
 //      print("The value of the slider is now: \(slider.value)")
     }
     
+    
+    @IBAction func startOver() {
+        startNewGame()
+        updateLabels()
+    }
+    
     func startNewRound() {
         round += 1
         targetValue = 1 + Int(arc4random_uniform(100))
@@ -90,6 +97,13 @@ class ViewController: UIViewController {
         scoreLabel.text = "\(score)"
         roundLabel.text = "\(round)"
     }
+    
+    func startNewGame() {
+        score = 0
+        round = 0
+        startNewRound()
+    }
+
     
 }
 
